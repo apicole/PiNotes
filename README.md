@@ -264,6 +264,7 @@ pip install numpy pyserial colour bus matplotlib adafruit-circuitpython-amg88xx 
 ```
 sudo nano /boot/config.txt
 > dtparam=i2c_arm=on,i2c_arm_baudrate=400000
+
 sudo i2cdetect -y 1  
 >  (0x69)
 
