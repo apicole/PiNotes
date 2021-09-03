@@ -11,19 +11,48 @@ then
 echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 ```
 
-**Change Passwd & Enable SSH : Raspi-Config**
+**RaspiConfig command lines to set default options from Command Line** <br>
+%d - Integer input - 0 is in general success / yes / selected, 1 is failed / no / not selected<br>
+Query status works in the same way though.. 1 if the port is disabled / 0 if the port is enabled 
 ```
-sudo raspi-config nonint do_expand_rootfs
-sudo raspi-config --expand-rootfs
-sudo raspi-config nonint do_boot_splash 0
-sudo raspi-config nonint do_wifi_country FR
-sudo raspi-config nonint do_hostname "yourhostname"
-sudo raspi-config nonint do_ssh 1|0
-sudo raspi-config nonint do_camera 1|0
-sudo raspi-config nonint do_spi %d"
-sudo raspi-config nonint do_i2c %d"
-sudo raspi-config nonint do_serial %d"
+/* Command strings */
+#define GET_CAN_EXPAND  "sudo raspi-config nonint get_can_expand"
+#define EXPAND_FS       "sudo raspi-config nonint do_expand_rootfs"
+#define GET_HOSTNAME    "sudo raspi-config nonint get_hostname"
+#define SET_HOSTNAME    "sudo raspi-config nonint do_hostname %s"
+#define GET_BOOT_CLI    "sudo raspi-config nonint get_boot_cli"
+#define GET_AUTOLOGIN   "sudo raspi-config nonint get_autologin""
+#define GET_CAMERA      "sudo raspi-config nonint get_camera"
+#define SET_CAMERA      "sudo raspi-config nonint do_camera %d"
+#define GET_SSH         "sudo raspi-config nonint get_ssh"
+#define SET_SSH         "sudo raspi-config nonint do_ssh %d"
+#define GET_VNC         "sudo raspi-config nonint get_vnc"
+#define SET_VNC         "sudo raspi-config nonint do_vnc %d"
+#define GET_SPI         "sudo raspi-config nonint get_spi"
+#define SET_SPI         "sudo raspi-config nonint do_spi %d"
+#define GET_I2C         "sudo raspi-config nonint get_i2c"
+#define SET_I2C         "sudo raspi-config nonint do_i2c %d"
+#define GET_SERIAL      "sudo raspi-config nonint get_serial"
+#define GET_SERIALHW    "sudo raspi-config nonint get_serial_hw"
+#define SET_SERIAL      "sudo raspi-config nonint do_serial %d"
+#define GET_1WIRE       "sudo raspi-config nonint get_onewire"
+#define SET_1WIRE       "sudo raspi-config nonint do_onewire %d"
+#define GET_RGPIO       "sudo raspi-config nonint get_rgpio"
+#define SET_RGPIO       "sudo raspi-config nonint do_rgpio %d"
+#define GET_PI_TYPE     "sudo raspi-config nonint get_pi_type"
+#define GET_GPU_MEM     "sudo raspi-config nonint get_config_var gpu_mem /boot/config.txt"
+#define GET_GPU_MEM_256 "sudo raspi-config nonint get_config_var gpu_mem_256 /boot/config.txt"
+#define GET_GPU_MEM_512 "sudo raspi-config nonint get_config_var gpu_mem_512 /boot/config.txt"
+#define GET_GPU_MEM_1K  "sudo raspi-config nonint get_config_var gpu_mem_1024 /boot/config.txt"
+#define SET_GPU_MEM     "sudo raspi-config nonint do_memory_split %d"
+#define GET_HDMI_GROUP  "sudo raspi-config nonint get_config_var hdmi_group /boot/config.txt"
+#define GET_HDMI_MODE   "sudo raspi-config nonint get_config_var hdmi_mode /boot/config.txt"
+#define SET_HDMI_GP_MOD "sudo raspi-config nonint do_resolution %d %d"
+#define GET_WIFI_CTRY   "sudo raspi-config nonint get_wifi_country"
+#define SET_WIFI_CTRY   "sudo raspi-config nonint do_wifi_country %s"
+#define CHANGE_PASSWD   "(echo \"%s\" ; echo \"%s\" ; echo \"%s\") | passwd"
 ```
+
 
 **Commands to update&Cleanup**
 ```
@@ -54,6 +83,11 @@ mv /etc/ssh/ssh_host_* default_kali_keys/
  dpkg-reconfigure openssh-server
  # md5sum ssh_host_*
 service ssh restart
+```
+
+**List GPIO Status** 
+```
+sudo gpio readall
 ```
 
 **Create Bash Aliases**
