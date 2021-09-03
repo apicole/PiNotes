@@ -240,7 +240,35 @@ cd LCD-show*/
 sudo ./LCD5-show
 ```
 
-**Setup a miniTFT display 1.3** https://github.com/adafruit/Adafruit_CircuitPython_RGB_Display
+
+**Setup MLX90640 Temperature Infra Red Sensor** <br>
+
+Source : https://makersportal.com/blog/2020/6/8/high-resolution-thermal-camera-with-raspberry-pi-and-mlx90640 <br>
+https://learn.adafruit.com/adafruit-mlx90640-ir-thermal-camera/pinouts
+```
+sudo apt-get install python3-pyqt5 idle3 python3-numpy libatlas-base-dev python3-scipy
+sudo pip3 install RPI.GPIO adafruit-blinka scipy
+curl -sL https://github.com/Seeed-Studio/grove.py/raw/master/install.sh | sudo bash -s -
+sudo pip3 install seeed-python-mlx90640
+sudo git clone  https://github.com/gobuyun/seeed_ircamera.git; Cd seeed_ircamera;Sudo python3 seeed_python_ircamera.py
+```
+sudo i2cdetect -y -r 1
+> 33
+
+
+**Setup AMG8831 / AMG8833 Infra Red Sensor** <br>
+Source : https://github.com/makerportal/AMG8833_IR_cam  &  https://github.com/sausheong/thermalcam  
+```
+sudo apt-get install -y i2c-tools python-smbus python-matplotlib python-scipy python-pygame
+pip install numpy pyserial colour bus matplotlib adafruit-circuitpython-amg88xx Adafruit_AMG88xx
+```
+sudo nano /boot/config.txt
+> dtparam=i2c_arm=on,i2c_arm_baudrate=400000
+sudo i2cdetect -y 1  
+>  (0x69)
+
+
+**Setup miniTFT display 1.3** https://github.com/adafruit/Adafruit_CircuitPython_RGB_Display
 Values for scripts : <br>
     width=240,<br>
     height=240,<br>
