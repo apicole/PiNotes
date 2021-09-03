@@ -11,7 +11,7 @@ then
 echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 ```
 
-**RaspiConfig command lines to set default options from Command Line** <br>
+**Set or Get raspi-config options from command line** <br>
 %d - Integer input - 0 is in general success / yes / selected, 1 is failed / no / not selected<br>
 Query status works in the same way though.. 1 if the port is disabled / 0 if the port is enabled 
 ```
