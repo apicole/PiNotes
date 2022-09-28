@@ -17,12 +17,12 @@ if [ "$_IP" ]; then
 	convert base.jpg -pointsize 80 -fill lime -draw "text 0,150 'IPv4: $_IP'" -fill black -draw "text -0,250 'Hostname: $(uname -n)'" -pointsize 50 -draw "text -0,400 '$(date)'" ip.jpg 
 	pcmanfm --set-wallpaper '/home/pi/ip.jpg'      #(local)
 	#env DISPLAY=:0.0 pcmanfm -w '/home/pi/ip.jpg' # (remote)
+	#gconftool -t string -s /home/pi/ip.jpg   #(GNOME)
+	#feh --bg-scale /home/pi/ip.jpg           #(semble compatible)
 	IFS=. read a b c d <<<"$_IP"
 	#espeak-ng -v fr -s 200 $c
 	#espeak-ng -v fr -s 300 point
 	espeak-ng -v fr -s 200 $d
-	#gconftool -t string -s /desktop/gnome/background/picture_filename ./ip.jpg   #(GNOME)
-	#feh --bg-scale ./3.jpg  
 fi
 ```
 
