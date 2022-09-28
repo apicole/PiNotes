@@ -1,4 +1,4 @@
-**Afficher l'adresse IP sur un papier peint.. et dicter le dernier octet via espeak **
+# Afficher l'adresse IP sur un papier peint.. et dicter le dernier octet via espeak **
 
 **Installer espeak et imagemagick**
 ```
