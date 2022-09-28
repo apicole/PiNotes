@@ -1,9 +1,12 @@
-Afficher l'adresse IP sur un papier peint.. et dicter le dernier octet via espeak 
+**Afficher l'adresse IP sur un papier peint.. et dicter le dernier octet via espeak **
 
-Installer espeak et imagemagick 
+**Installer espeak et imagemagick**
+```
 sudo apt-get install espeak-ng imagemagick
+```
 
-Créer le fichier ip2jpg.sh
+**Créer le fichier ip2jpg.sh**
+```
 #/bin/sh  
 # ~/.config/pcmanfm/LXDE/ folder !
 # Create white background image
@@ -21,7 +24,11 @@ if [ "$_IP" ]; then
 	#gconftool -t string -s /desktop/gnome/background/picture_filename ./ip.jpg   #(GNOME)
 	#feh --bg-scale ./3.jpg  
 fi
+```
 
-Étiter la crontab : 
-crontab -e
-@reboot (sleep 60 && /home/pi/./ip2jpg.sh)
+**Étiter crontab** 
+
+```crontab -e```
+
+**Ajouter**
+```@reboot (sleep 60 && /home/pi/./ip2jpg.sh)```
