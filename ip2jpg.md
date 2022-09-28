@@ -8,7 +8,6 @@ sudo apt-get install espeak-ng imagemagick
 **Créer le fichier ip2jpg.sh**
 ```
 #/bin/sh  
-# ~/.config/pcmanfm/LXDE/ folder !
 # Create white background image
 convert -size 1280x800 xc:white base.jpg
 _IP=$(hostname -I) || true
